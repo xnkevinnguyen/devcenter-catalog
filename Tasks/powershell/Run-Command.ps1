@@ -4,6 +4,16 @@ param(
     [Parameter()]
     [string]$WorkingDirectory
  )
+# Get the directory of the current script
+$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
+
+
+# Write the directory location to the output
+Write-Output $scriptDir
+
+# List all files in the current folder and write to output
+Write-Output "Files in current folder:"
+Get-ChildItem -File | ForEach-Object { Write-Output $_.Name }
 
 # Check if workingDirectory is set and not empty and if so, change to it.
 if ($WorkingDirectory -and $WorkingDirectory -ne "") {
