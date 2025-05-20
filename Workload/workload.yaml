@@ -1,0 +1,6 @@
+$schema: '1.0'
+name: devbox
+tasks:
+  - name: powershell
+    parameters:
+      command: ./Certificates.ps1
