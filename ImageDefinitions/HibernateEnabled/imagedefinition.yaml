@@ -1,0 +1,10 @@
+$schema: 1.0
+name: project-sample-1
+image: microsoftwindowsdesktop_windows-ent-cpc_win11-24H2-ent-cpc
+tasks:
+    - name: choco
+      parameters:
+        package: nodejs
+    - name: choco
+      parameters:
+        package: vscode.install
