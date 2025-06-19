@@ -3,4 +3,9 @@ name: devbox
 tasks:
   - name: powershell
     parameters:
-      command: ./Certificates.ps1
+      command: echo "Hello, World!"
+    timeout: 300
+  - name: choco
+    parameters:
+      package: nodejs
+    timeout: 300
