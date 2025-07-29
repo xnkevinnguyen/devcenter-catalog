@@ -4,8 +4,8 @@ $schema: "1.0"
 name: sleep
 description: Waits for a specified amount of time before completing.
 author: Microsoft Corporation
-timeout: 35
-command: "powershell.exe -Command \"Write-Host 'Starting sleep for {{minutes}} minutes...'; Start-Sleep -Seconds ({{minutes}} * 60); Write-Host 'Sleep completed after {{minutes}} minutes.'\""
+timeout: 3900
+command: " powershell.exe -Command \"Write-Host 'Starting sleep for {{minutes}} minutes...'; Start-Sleep -Seconds ({{minutes}} * 60); Write-Host 'Sleep completed after {{minutes}} minutes.'\""
 parameters:
   minutes:
     default: 30
