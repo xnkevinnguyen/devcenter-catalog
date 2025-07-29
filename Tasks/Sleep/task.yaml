@@ -1,0 +1,29 @@
+# This is a sleep/wait task for Dev Box.
+
+$schema: "1.0"
+name: sleep
+description: Waits for a specified amount of time before completing.
+author: Microsoft Corporation
+timeout: 35
+command: "powershell.exe -Command \"Write-Host 'Starting sleep for {{minutes}} minutes...'; Start-Sleep -Seconds ({{minutes}} * 60); Write-Host 'Sleep completed after {{minutes}} minutes.'\""
+parameters:
+  minutes:
+    default: 30
+    type: number
+    required: false
+    description: The number of minutes to wait before completing the task.
+documentation:
+  notes: This task is used to introduce a delay in the provisioning process. Useful for waiting between other tasks or testing timing scenarios.
+  examples:
+    - name: sleep
+      description: Wait for 30 minutes
+      parameters:
+        minutes: 30
+    - name: sleep
+      description: Wait for 5 minutes
+      parameters:
+        minutes: 5
+    - name: sleep
+      description: Wait for 1 hour
+      parameters:
+        minutes: 60
