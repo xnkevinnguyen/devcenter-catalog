@@ -1,0 +1,10 @@
+$schema: '1.0'
+name: devbox-sleep
+tasks:
+  - name: sleep
+    parameters:
+      minutes: 15
+  - name: sleep
+    timeout: 300
+    parameters:
+      minutes: 30

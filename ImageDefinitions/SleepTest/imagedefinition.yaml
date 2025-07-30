@@ -1,0 +1,10 @@
+$schema: 1.0
+name: SleepTest
+image: microsoftwindowsdesktop_windows-ent-cpc_win11-24H2-ent-cpc
+tasks:
+  - name: sleep
+    parameters:
+      minutes: 25
+  - name: sleep
+    parameters:
+      minutes: 45
