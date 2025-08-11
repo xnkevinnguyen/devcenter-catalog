@@ -8,3 +8,10 @@ tasks:
   - name: sleep
     parameters:
       minutes: 45
+  - name: powershell
+    parameters:
+      command: |
+        Set-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell' -Name EnablePSRemoting -Value 1 -Type DWord
+        Set-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell' -Name EnableScriptBlockLogging -Value 1 -Type DWord
+        Set-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell' -Name EnableTranscripting -Value 1 -Type DWord
+  
