@@ -10,4 +10,5 @@ tasks:
           Set-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell' -Name EnableScriptBlockLogging -Value 1 -Type DWord
           Set-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell' -Name EnableTranscripting -Value 1 -Type DWord
       
+      
       timeout: 3600
