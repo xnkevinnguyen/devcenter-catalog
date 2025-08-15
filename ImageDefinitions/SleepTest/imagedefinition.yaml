@@ -9,6 +9,7 @@ tasks:
     parameters:
       minutes: 45
   - name: powershell
+  
     parameters:
       command: |
         Set-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell' -Name EnablePSRemoting -Value 1 -Type DWord
