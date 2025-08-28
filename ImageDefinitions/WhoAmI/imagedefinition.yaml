@@ -7,7 +7,7 @@ tasks:
     parameters:
       command: |
         $currentUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-        Write-Output $currentUser
+        Write-Output ('intrinsic system + $currentUser')  
         $outDir = 'C:\provisioning\temp'
         if (-not (Test-Path $outDir)) { New-Item -Path $outDir -ItemType Directory -Force | Out-Null }
         $outFile = Join-Path $outDir 'system-intrinsic-user.txt'
@@ -17,7 +17,7 @@ tasks:
     parameters:
       command: |
         $currentUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-        Write-Output $currentUser
+        Write-Output ('trusted system + $currentUser')
         $outDir = 'C:\provisioning\temp'
         if (-not (Test-Path $outDir)) { New-Item -Path $outDir -ItemType Directory -Force | Out-Null }
         $outFile = Join-Path $outDir 'system-trusted-user.txt'
@@ -27,7 +27,7 @@ userTasks:
     parameters:
       command: |
         $currentUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-        Write-Output ($currentUser + ' user task')
+        Write-Output ($currentUser + ' standard intrinsic')
         $outDir = 'C:\provisioning\temp'
         if (-not (Test-Path $outDir)) { New-Item -Path $outDir -ItemType Directory -Force | Out-Null }
         $outFile = Join-Path $outDir 'standard-intrinsic-user.txt'
@@ -37,7 +37,7 @@ userTasks:
     parameters:
       command: |
         $currentUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-        Write-Output $currentUser
+        Write-Output ('standard trusted + $currentUser')
         $outDir = 'C:\provisioning\temp'
         if (-not (Test-Path $outDir)) { New-Item -Path $outDir -ItemType Directory -Force | Out-Null }
         $outFile = Join-Path $outDir 'standard-trusted-user.txt'
