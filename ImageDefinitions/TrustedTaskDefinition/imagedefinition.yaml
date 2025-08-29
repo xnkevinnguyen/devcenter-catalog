@@ -1,0 +1,30 @@
+$schema: 1.0
+name: trusted-powershell
+image: microsoftvisualstudio_visualstudioplustools_vs-2022-pro-general-win11-m365-gen2
+tasks:
+  - name: powershell
+    parameters:
+      command: echo "Hello, World!"
+  - name: powershell
+    parameters:
+      command: |
+        $currentUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+        Write-Output ('trusted system + $currentUser')
+        $outDir = 'C:\provisioning\temp'
+        if (-not (Test-Path $outDir)) { New-Item -Path $outDir -ItemType Directory -Force | Out-Null }
+        $outFile = Join-Path $outDir 'system-trusted-user.txt'
+        Set-Content -Path $outFile -Value $currentUser -Encoding UTF8
+userTasks:
+  - name: powershell
+    parameters:
+      command: echo "Hello, World!"
+
+  - name: powershell
+    parameters:
+      command: |
+        $currentUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+        Write-Output ('standard trusted + $currentUser')
+        $outDir = 'C:\provisioning\temp'
+        if (-not (Test-Path $outDir)) { New-Item -Path $outDir -ItemType Directory -Force | Out-Null }
+        $outFile = Join-Path $outDir 'standard-trusted-user.txt'
+        Set-Content -Path $outFile -Value $currentUser -Encoding UTF8
