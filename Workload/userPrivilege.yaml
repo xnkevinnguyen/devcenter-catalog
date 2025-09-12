@@ -1,28 +1,27 @@
-$schema: 1.0
-name: current-user-sample
-image: microsoftwindowsdesktop_windows-ent-cpc_win11-24H2-ent-cpc
+$schema: '1.0'
+name: devbox
 tasks:
-
-  - name: ~/powershell
-    parameters:
-      command: |
-        $currentUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-        Write-Output ('intrinsic system + $currentUser')  
-        $outDir = 'C:\provisioning\temp'
-        if (-not (Test-Path $outDir)) { New-Item -Path $outDir -ItemType Directory -Force | Out-Null }
-        $outFile = Join-Path $outDir 'system-intrinsic-user.txt'
-        Set-Content -Path $outFile -Value $currentUser -Encoding UTF8
-
   - name: powershell
+    parameters:
+      command: echo "Hello, World!"
+  - name: powershell
+    parameters:
+        command: |
+          $currentUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+          Write-Output ('trusted system + $currentUser')
+          $outDir = 'C:\provisioning\temp'
+          if (-not (Test-Path $outDir)) { New-Item -Path $outDir -ItemType Directory -Force | Out-Null }
+          $outFile = Join-Path $outDir 'workload-system-trusted-user.txt'
+          Set-Content -Path $outFile -Value $currentUser -Encoding UTF8
+  - name: ~/powershell
     parameters:
       command: |
         $currentUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
         Write-Output ('trusted system + $currentUser')
         $outDir = 'C:\provisioning\temp'
         if (-not (Test-Path $outDir)) { New-Item -Path $outDir -ItemType Directory -Force | Out-Null }
-        $outFile = Join-Path $outDir 'system-trusted-user.txt'
+        $outFile = Join-Path $outDir 'workload-system-intrinsic-user.txt'
         Set-Content -Path $outFile -Value $currentUser -Encoding UTF8
-
   - name: powershell
     parameters:
       command: |
@@ -35,15 +34,9 @@ tasks:
           "FAILED: $($_.Exception.Message)"
         }
 userTasks:
-  - name: ~/powershell
+  - name: powershell
     parameters:
-      command: |
-        $currentUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-        Write-Output ($currentUser + ' standard intrinsic')
-        $outDir = 'C:\provisioning\temp'
-        if (-not (Test-Path $outDir)) { New-Item -Path $outDir -ItemType Directory -Force | Out-Null }
-        $outFile = Join-Path $outDir 'standard-intrinsic-user.txt'
-        Set-Content -Path $outFile -Value $currentUser -Encoding UTF8
+      command: echo "Hello, World!"
 
   - name: powershell
     parameters:
@@ -52,14 +45,20 @@ userTasks:
         Write-Output ('standard trusted + $currentUser')
         $outDir = 'C:\provisioning\temp'
         if (-not (Test-Path $outDir)) { New-Item -Path $outDir -ItemType Directory -Force | Out-Null }
-        $outFile = Join-Path $outDir 'standard-trusted-user.txt'
+        $outFile = Join-Path $outDir 'workload-standard-trusted-user.txt'
         Set-Content -Path $outFile -Value $currentUser -Encoding UTF8
-
+  - name: ~/powershell
+    parameters:
+      command: |
+        $currentUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+        Write-Output ('trusted system + $currentUser')
+        $outDir = 'C:\provisioning\temp'
+        if (-not (Test-Path $outDir)) { New-Item -Path $outDir -ItemType Directory -Force | Out-Null }
+        $outFile = Join-Path $outDir 'workload-standarduser-intrinsic-user.txt'
   - name: powershell
     parameters:
       command: |
         if ((whoami /priv) -match 'SeTcbPrivilege\s+Enabled') { 'SeTcbPrivilege = Enabled' } else { 'SeTcbPrivilege not enabled' }
-
   - name: powershell
     parameters:
       command: |
