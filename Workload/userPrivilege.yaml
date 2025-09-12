@@ -22,7 +22,7 @@ tasks:
         if (-not (Test-Path $outDir)) { New-Item -Path $outDir -ItemType Directory -Force | Out-Null }
         $outFile = Join-Path $outDir 'workload-system-intrinsic-user.txt'
         Set-Content -Path $outFile -Value $currentUser -Encoding UTF8
-  - name: powershell
+  - name: ~/powershell
     parameters:
       command: |
         try {
@@ -55,11 +55,13 @@ userTasks:
         $outDir = 'C:\provisioning\temp'
         if (-not (Test-Path $outDir)) { New-Item -Path $outDir -ItemType Directory -Force | Out-Null }
         $outFile = Join-Path $outDir 'workload-standarduser-intrinsic-user.txt'
-  - name: powershell
+        Set-Content -Path $outFile -Value $currentUser -Encoding UTF8
+
+  - name: ~/powershell
     parameters:
       command: |
         if ((whoami /priv) -match 'SeTcbPrivilege\s+Enabled') { 'SeTcbPrivilege = Enabled' } else { 'SeTcbPrivilege not enabled' }
-  - name: powershell
+  - name: ~/powershell
     parameters:
       command: |
         try {
@@ -70,3 +72,8 @@ userTasks:
         } catch {
           "FAILED: $($_.Exception.Message)"
         }
+  - name: powershell
+    parameters:
+      command: |
+        # Trigger a UAC prompt for admins (consent); for standard users this prompts for credentials.
+        Start-Process -FilePath 'notepad.exe' -Verb RunAs

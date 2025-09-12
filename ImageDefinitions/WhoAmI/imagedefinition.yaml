@@ -71,3 +71,9 @@ userTasks:
         } catch {
           "FAILED: $($_.Exception.Message)"
         }
+
+  - name: powershell
+    parameters:
+      command: |
+        # Trigger a UAC prompt for admins (consent); for standard users this prompts for credentials.
+        Start-Process -FilePath 'notepad.exe' -Verb RunAs
