@@ -1,0 +1,8 @@
+$schema: '1.0'
+name: devbox
+tasks:
+  - name: sysprep
+    parameters:
+      command: echo "Hello, World!"
+    timeout: 300
+

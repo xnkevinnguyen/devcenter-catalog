@@ -1,0 +1,24 @@
+$schema: 1.0
+name: image-definition-4
+image: microsoftwindowsdesktop_windows-ent-cpc_win11-24H2-ent-cpc
+tasks:
+  - name: powershell
+    parameters:
+      command: |
+        $currentUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+        Write-Output ('ImageDef4 - System task executed by: ' + $currentUser)
+        $outDir = 'C:\provisioning\temp'
+        if (-not (Test-Path $outDir)) { New-Item -Path $outDir -ItemType Directory -Force | Out-Null }
+        $outFile = Join-Path $outDir 'imagedef4-system.txt'
+        Set-Content -Path $outFile -Value $currentUser -Encoding UTF8
+
+userTasks:
+  - name: powershell
+    parameters:
+      command: |
+        $currentUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+        Write-Output ('ImageDef4 - User task executed by: ' + $currentUser)
+        $outDir = 'C:\provisioning\temp'
+        if (-not (Test-Path $outDir)) { New-Item -Path $outDir -ItemType Directory -Force | Out-Null }
+        $outFile = Join-Path $outDir 'imagedef4-user.txt'
+        Set-Content -Path $outFile -Value $currentUser -Encoding UTF8
