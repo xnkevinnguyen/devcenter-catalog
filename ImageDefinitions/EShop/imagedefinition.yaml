@@ -1,6 +1,7 @@
 $schema: 1.0
 name: eshop-sample
 image: microsoftwindowsdesktop_windows-ent-cpc_win11-24H2-ent-cpc
+TriggerImageBuildOnUpdate: false
 tasks:
 
     - name: powershell
@@ -11,5 +12,3 @@ tasks:
           Set-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell' -Name EnableTranscripting -Value 1 -Type DWord
 
       timeout: 3600
-
-TriggerImageBuildOnUpdate: false
