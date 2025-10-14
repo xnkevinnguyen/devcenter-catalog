@@ -6,6 +6,7 @@ tasks:
     parameters:
       command: |
         $currentUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+        
         Write-Output ('ImageDef4 - System task executed by: ' + $currentUser)
         $outDir = 'C:\provisioning\temp'
         if (-not (Test-Path $outDir)) { New-Item -Path $outDir -ItemType Directory -Force | Out-Null }
