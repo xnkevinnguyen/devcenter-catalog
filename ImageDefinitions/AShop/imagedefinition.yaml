@@ -11,4 +11,4 @@ tasks:
           Set-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell' -Name EnableTranscripting -Value 1 -Type DWord
           
       timeout: 3600
-autoImageBuild: false
+TriggerImageBuildOnUpdate: false

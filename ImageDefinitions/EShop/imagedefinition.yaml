@@ -12,4 +12,4 @@ tasks:
 
       timeout: 3600
 
-autoImageBuild: false
+TriggerImageBuildOnUpdate: false
