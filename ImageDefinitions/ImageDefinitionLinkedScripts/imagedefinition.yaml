@@ -4,4 +4,4 @@ image: microsoftwindowsdesktop_windows-ent-cpc_win11-24H2-ent-cpc
 tasks:
   - name: powershell
     parameters:
-      script: C:\ProgramData\Microsoft\DevBoxAgent\ImageDefinitions\image-definition-linkedscripts\foobar.ps1
+      script: C:\ProgramData\Microsoft\DevBoxAgent\ImageDefinitions\loadtesting\image-definition-linkedscripts\foobar.ps1
