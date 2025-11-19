@@ -4,7 +4,7 @@ image: microsoftwindowsdesktop_windows-ent-cpc_win11-24H2-ent-cpc
 description: "injects a network"
 
 tasks:
-  - name: powershell
-    parameters:
-      command: |
-        Write-Host "Hello world!"
+    - name: powershell
+      parameters:
+        command: |
+          Write-Host "Hello world!"
