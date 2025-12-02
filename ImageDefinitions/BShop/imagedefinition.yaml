@@ -1,5 +1,5 @@
 $schema: 1.0
-name: ashop-sample-3 
+name: bshop-sample-3 
 image: microsoftwindowsdesktop_windows-ent-cpc_win11-24H2-ent-cpc
 tasks:
     - name: ~/powershell
